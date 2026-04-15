@@ -3,9 +3,9 @@ import gifsicle from 'gifsicle-wasm-browser'
 export const COMPRESSION_LEVELS = [25, 50, 75, 100]
 
 const LOSSY_MAP = {
-  25: 30,
-  50: 80,
-  75: 130,
+  25: 60,
+  50: 100,
+  75: 160,
   100: 200,
 }
 

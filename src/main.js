@@ -1,5 +1,5 @@
 import { compressGif } from './compress.js'
-import { renderGifPreview, renderSize, setLoading, showError } from './ui.js'
+import { renderGifPreview, renderSize, formatBytes, setLoading, showError } from './ui.js'
 
 // --- State ---
 const state = {
@@ -61,9 +61,17 @@ async function runCompression() {
   showError(errorMsg, null)
 
   try {
-    state.compressedBytes = await compressGif(state.originalBytes, state.level)
-    renderGifPreview(compPreview, state.compressedBytes)
-    renderSize(compSize, state.compressedBytes.length, state.originalBytes.length)
+    const result = await compressGif(state.originalBytes, state.level)
+    if (result.length >= state.originalBytes.length) {
+      // Compression made it bigger — file is already well-optimized at this level
+      state.compressedBytes = state.originalBytes
+      renderGifPreview(compPreview, state.compressedBytes)
+      compSize.innerHTML = `${formatBytes(state.originalBytes.length)} <span style="color:#888;font-size:11px">— already optimized, try a stronger level</span>`
+    } else {
+      state.compressedBytes = result
+      renderGifPreview(compPreview, state.compressedBytes)
+      renderSize(compSize, state.compressedBytes.length, state.originalBytes.length)
+    }
     downloadBtn.hidden = false
   } catch (e) {
     showError(errorMsg, `Compression failed: ${e.message}`)
