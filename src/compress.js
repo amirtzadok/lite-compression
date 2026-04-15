@@ -27,12 +27,11 @@ export function getLossyValue(level) {
  */
 export async function compressGif(inputBytes, level) {
   const lossy = getLossyValue(level)
+  // Use Blob so the buffer isn't transferred/detached on repeated calls
+  const blob = new Blob([inputBytes], { type: 'image/gif' })
   const files = await gifsicle.run({
-    input: [{
-      file: inputBytes.buffer,
-      name: '1.gif',
-    }],
-    command: [`-O1 --lossy=${lossy} 1.gif -o /out/out.gif`],
+    input: [{ file: blob, name: '1.gif' }],
+    command: [`-O2 --lossy=${lossy} 1.gif -o /out/out.gif`],
   })
   const arrayBuffer = await files[0].arrayBuffer()
   return new Uint8Array(arrayBuffer)
