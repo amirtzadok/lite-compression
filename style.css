@@ -23,9 +23,20 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   padding: 24px 16px 48px;
+  position: relative;
 }
-
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('/bg.png') center / cover no-repeat;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
 #app {
+  position: relative;
+  z-index: 1;
   max-width: 680px;
   margin: 0 auto;
 }
