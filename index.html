@@ -14,6 +14,29 @@
       <p class="tagline">Compress animated GIFs. Colors stay intact.</p>
     </header>
 
+    <!-- Compression level selector (always visible — pick first) -->
+    <div class="level-section">
+      <label class="section-label">Compression Level</label>
+      <div class="level-buttons" role="group" aria-label="Compression level">
+        <button class="level-btn" data-level="25">
+          <span class="level-pct">25%</span>
+          <span class="level-name">Light</span>
+        </button>
+        <button class="level-btn active" data-level="50">
+          <span class="level-pct">50%</span>
+          <span class="level-name">Medium</span>
+        </button>
+        <button class="level-btn" data-level="75">
+          <span class="level-pct">75%</span>
+          <span class="level-name">Strong</span>
+        </button>
+        <button class="level-btn" data-level="100">
+          <span class="level-pct">100%</span>
+          <span class="level-name">Max</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Drop zone -->
     <div id="drop-zone" role="button" tabindex="0" aria-label="Drop GIF here or click to browse">
       <div class="drop-icon">📂</div>
@@ -25,31 +48,8 @@
     <!-- Error message -->
     <div id="error-msg" class="error-msg" hidden></div>
 
-    <!-- Controls + preview (hidden until file loaded) -->
+    <!-- Preview panels (hidden until file loaded) -->
     <section id="controls" hidden>
-
-      <!-- Compression level selector -->
-      <div class="level-section">
-        <label class="section-label">Compression Level</label>
-        <div class="level-buttons" role="group" aria-label="Compression level">
-          <button class="level-btn" data-level="25">
-            <span class="level-pct">25%</span>
-            <span class="level-name">Light</span>
-          </button>
-          <button class="level-btn active" data-level="50">
-            <span class="level-pct">50%</span>
-            <span class="level-name">Medium</span>
-          </button>
-          <button class="level-btn" data-level="75">
-            <span class="level-pct">75%</span>
-            <span class="level-name">Strong</span>
-          </button>
-          <button class="level-btn" data-level="100">
-            <span class="level-pct">100%</span>
-            <span class="level-name">Max</span>
-          </button>
-        </div>
-      </div>
 
       <!-- Before / After panels -->
       <div class="preview-panels">
