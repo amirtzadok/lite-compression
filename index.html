@@ -14,30 +14,7 @@
       <p class="tagline">Compress animated GIFs. Colors stay intact.</p>
     </header>
 
-    <!-- Compression level selector (always visible — pick first) -->
-    <div class="level-section">
-      <label class="section-label">Compression Level</label>
-      <div class="level-buttons" role="group" aria-label="Compression level">
-        <button class="level-btn" data-level="25">
-          <span class="level-pct">25%</span>
-          <span class="level-name">Light</span>
-        </button>
-        <button class="level-btn active" data-level="50">
-          <span class="level-pct">50%</span>
-          <span class="level-name">Medium</span>
-        </button>
-        <button class="level-btn" data-level="75">
-          <span class="level-pct">75%</span>
-          <span class="level-name">Strong</span>
-        </button>
-        <button class="level-btn" data-level="100">
-          <span class="level-pct">100%</span>
-          <span class="level-name">Max</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Drop zone -->
+    <!-- Step 1: Drop zone -->
     <div id="drop-zone" role="button" tabindex="0" aria-label="Drop GIF here or click to browse">
       <div class="drop-icon">📂</div>
       <p class="drop-text">Drop a GIF here, or <span class="browse-link">browse</span></p>
@@ -48,10 +25,33 @@
     <!-- Error message -->
     <div id="error-msg" class="error-msg" hidden></div>
 
-    <!-- Preview panels (hidden until file loaded) -->
+    <!-- Step 2+: shown after file loaded -->
     <section id="controls" hidden>
 
-      <!-- Before / After panels -->
+      <!-- Step 2: Compression level selector -->
+      <div class="level-section">
+        <label class="section-label">Compression Level</label>
+        <div class="level-buttons" role="group" aria-label="Compression level">
+          <button class="level-btn" data-level="25">
+            <span class="level-pct">25%</span>
+            <span class="level-name">Light</span>
+          </button>
+          <button class="level-btn active" data-level="50">
+            <span class="level-pct">50%</span>
+            <span class="level-name">Medium</span>
+          </button>
+          <button class="level-btn" data-level="75">
+            <span class="level-pct">75%</span>
+            <span class="level-name">Strong</span>
+          </button>
+          <button class="level-btn" data-level="100">
+            <span class="level-pct">100%</span>
+            <span class="level-name">Max</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Before / After preview -->
       <div class="preview-panels">
         <div class="panel">
           <div class="panel-label">Original</div>
@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <!-- Download -->
+      <!-- Step 4: Download or change level -->
       <button id="download-btn" class="download-btn" hidden>
         ⬇ Download Compressed GIF
       </button>
