@@ -9,6 +9,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "browser-image-compression": "^2.0.2",
     "gifsicle-wasm-browser": "^1.0.6"
   },
   "devDependencies": {

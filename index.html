@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lite GIF</title>
+  <title>Lite GIF by AmirTzadok</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,21 +14,27 @@
       <p class="tagline">Compress animated GIFs. Colors stay intact.</p>
     </header>
 
-    <!-- Step 1: Drop zone -->
-    <div id="drop-zone" role="button" tabindex="0" aria-label="Drop GIF here or click to browse">
+    <!-- Format tabs -->
+    <div class="format-tabs" role="tablist">
+      <button class="tab-btn active" data-tab="gif" role="tab" aria-selected="true">🎞 GIF</button>
+      <button class="tab-btn" data-tab="png" role="tab" aria-selected="false">🖼 PNG</button>
+    </div>
+
+    <!-- Drop zone -->
+    <div id="drop-zone" role="button" tabindex="0" aria-label="Drop file here or click to browse">
       <div class="drop-icon">📂</div>
-      <p class="drop-text">Drop a GIF here, or <span class="browse-link">browse</span></p>
-      <p class="drop-hint">Animated GIF · up to 50 MB</p>
+      <p class="drop-text">Drop a <span id="drop-type-label">GIF</span> here, or <span class="browse-link">browse</span></p>
+      <p class="drop-hint" id="drop-hint">Animated GIF · up to 50 MB</p>
       <input type="file" id="file-input" accept=".gif,image/gif" hidden />
     </div>
 
     <!-- Error message -->
     <div id="error-msg" class="error-msg" hidden></div>
 
-    <!-- Step 2+: shown after file loaded -->
+    <!-- Controls + preview (hidden until file loaded) -->
     <section id="controls" hidden>
 
-      <!-- Step 2: Compression level selector -->
+      <!-- Compression level selector -->
       <div class="level-section">
         <label class="section-label">Compression Level</label>
         <div class="level-buttons" role="group" aria-label="Compression level">
@@ -51,19 +57,19 @@
         </div>
       </div>
 
-      <!-- Step 3: Before / After preview -->
+      <!-- Before / After panels -->
       <div class="preview-panels">
         <div class="panel">
           <div class="panel-label">Original</div>
           <div class="panel-img-wrap">
-            <img id="original-preview" alt="Original GIF" />
+            <img id="original-preview" alt="Original" />
           </div>
           <div class="panel-size" id="original-size"></div>
         </div>
         <div class="panel panel--compressed">
           <div class="panel-label">Compressed</div>
           <div class="panel-img-wrap">
-            <img id="compressed-preview" alt="Compressed GIF" />
+            <img id="compressed-preview" alt="Compressed" />
             <div id="loading-overlay" class="loading-overlay" hidden>
               <div class="spinner"></div>
               <span>Compressing…</span>
@@ -73,9 +79,9 @@
         </div>
       </div>
 
-      <!-- Step 4: Download or change level -->
+      <!-- Download -->
       <button id="download-btn" class="download-btn" hidden>
-        ⬇ Download Compressed GIF
+        ⬇ Download Compressed File
       </button>
 
     </section>

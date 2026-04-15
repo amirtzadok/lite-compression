@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { getLossyValue, COMPRESSION_LEVELS } from '../compress.js'
+import { getLossyValue, COMPRESSION_LEVELS, getPngQuality } from '../compress.js'
 
 describe('getLossyValue', () => {
   it('returns 60 for level 25', () => {
@@ -22,5 +22,17 @@ describe('getLossyValue', () => {
 describe('COMPRESSION_LEVELS', () => {
   it('exports array of valid levels', () => {
     expect(COMPRESSION_LEVELS).toEqual([25, 50, 75, 100])
+  })
+})
+
+describe('getPngQuality', () => {
+  it('returns 0.85 for level 25', () => {
+    expect(getPngQuality(25)).toBe(0.85)
+  })
+  it('returns 0.65 for level 50', () => {
+    expect(getPngQuality(50)).toBe(0.65)
+  })
+  it('throws for unknown level', () => {
+    expect(() => getPngQuality(99)).toThrow('Unknown compression level: 99')
   })
 })
