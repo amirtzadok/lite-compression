@@ -6,6 +6,7 @@ const state = {
   originalBytes: null,   // Uint8Array
   compressedBytes: null, // Uint8Array
   level: 50,             // active compression level
+  filename: 'compressed.gif', // original filename
 }
 
 // --- DOM refs ---
@@ -41,6 +42,8 @@ async function loadFile(file) {
 
   const arrayBuffer = await file.arrayBuffer()
   state.originalBytes = new Uint8Array(arrayBuffer)
+  const base = file.name.replace(/\.gif$/i, '')
+  state.filename = `${base}_s.gif`
 
   renderGifPreview(origPreview, state.originalBytes)
   renderSize(origSize, state.originalBytes.length)
@@ -76,7 +79,7 @@ function downloadCompressed() {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = 'lite-gif-compressed.gif'
+  a.download = state.filename
   a.click()
   URL.revokeObjectURL(url)
 }
